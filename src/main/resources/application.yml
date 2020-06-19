@@ -1,0 +1,21 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: api-microservice-one
+          uri: ${microservice.one.url}
+          predicates:
+            - Path=/api/**
+
+        - id: default
+          uri: ${microservice.default.url}
+          predicates:
+            - Path=/**
+
+logging:
+  level:
+    org.springframwork.cloud.gateway: ${log.level:INFO}
+    org.springframwork.http.server.reactive: ${log.level:INFO}
+    org.springframwork.web.reactive: ${log.level:INFO}
+    reactor.ipc.netty: ${log.level:INFO}
+    reactor.netty: ${log.level:INFO}
