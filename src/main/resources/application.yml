@@ -6,6 +6,11 @@ spring:
           uri: ${microservice.one.url}
           predicates:
             - Path=/api/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: ${circuit.breaker.identifier.default}
+                fallbackUri: forward:/fallback
 
         - id: default
           uri: ${microservice.default.url}
